@@ -1,11 +1,12 @@
 import { use } from 'katejs/lib/client';
+import { AppUser } from 'katejs-modules/lib/client';
 
 import TestForm from 'forms/TestForm';
 
 import { structures, title, packageName } from './structure';
 import env from './front.env.json';
 
-const AppClient = parent => class Client extends use(parent) {
+const AppClient = parent => class Client extends use(parent, AppUser) {
   static title = title;
 
   constructor(params) {
@@ -23,12 +24,17 @@ const AppClient = parent => class Client extends use(parent) {
       form: 'TestForm',
       title: 'Test form',
     });
-    // this.forms contains:
-    //   TaskList,
-    //   TaskItem,
-    //
-    // Forms classes can be changed by form name
-    // this.forms[_form_name_]
+
+    this.saveAuth = true;
+    this.menu.forEach((menuItem) => {
+      if (this.forms[menuItem.form].entity) {
+        // eslint-disable-next-line no-param-reassign
+        menuItem.rule = {
+          entity: this.forms[menuItem.form].entity,
+          method: 'put',
+        };
+      }
+    });    
   }
 };
 AppClient.package = packageName;

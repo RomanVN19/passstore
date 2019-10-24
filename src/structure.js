@@ -1,6 +1,15 @@
 import Fields from 'katejs/lib/fields';
 
-const Task = {
+const ProjectRole = {
+  fields: [
+    {
+      name: 'title',
+      type: Fields.STRING,
+    },
+  ],
+};
+
+const Project = {
   fields: [
     {
       name: 'title',
@@ -12,16 +21,39 @@ const Task = {
       name: 'users',
       fields: [
         {
-          name: 'title',
-          type: Fields.STRING,
+          name: 'user',
+          type: Fields.REFERENCE,
+          entity: 'User',
+        },
+        {
+          name: 'role',
+          type: Fields.REFERENCE,
+          entity: 'ProjectRole',
         },
       ],
     },
   ],
 };
 
-export const title = 'Boilerplate app';
-export const packageName = 'boilerplate_app';
+const Account = {
+  fields: [
+    {
+      name: 'title',
+      type: Fields.STRING,
+    },
+    {
+      name: 'project',
+      type: Fields.REFERENCE,
+      entity: 'Project',
+    },
+  ],
+};
+
+
+export const title = 'Passstore';
+export const packageName = 'passstore_app';
 export const structures = {
-  Task,
+  ProjectRole,
+  Project,
+  Account,
 };
