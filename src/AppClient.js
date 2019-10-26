@@ -1,8 +1,6 @@
 import { use } from 'katejs/lib/client';
 import { AppUser } from 'katejs-modules/lib/client';
 
-import TestForm from 'forms/TestForm';
-
 import { structures, title, packageName } from './structure';
 import env from './front.env.json';
 
@@ -17,13 +15,7 @@ const AppClient = parent => class Client extends use(parent, AppUser) {
 
     this.forms = {
       ...this.forms,
-      TestForm,
     };
-
-    this.menu.push({
-      form: 'TestForm',
-      title: 'Test form',
-    });
 
     this.saveAuth = true;
     this.menu.forEach((menuItem) => {
@@ -34,7 +26,7 @@ const AppClient = parent => class Client extends use(parent, AppUser) {
           method: 'put',
         };
       }
-    });    
+    });
   }
 };
 AppClient.package = packageName;

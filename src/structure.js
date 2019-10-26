@@ -46,6 +46,34 @@ const Account = {
       type: Fields.REFERENCE,
       entity: 'Project',
     },
+    {
+      name: 'description',
+      type: Fields.STRING,
+    },
+    {
+      name: 'url',
+      type: Fields.STRING,
+    },
+    {
+      name: 'login',
+      type: Fields.STRING,
+    },
+    {
+      name: 'password',
+      type: Fields.STRING,
+    },
+  ],
+  tables: [
+    {
+      name: 'roles',
+      fields: [
+        {
+          name: 'role',
+          type: Fields.REFERENCE,
+          entity: 'ProjectRole',
+        },
+      ],
+    },
   ],
 };
 

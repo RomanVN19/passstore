@@ -10,7 +10,6 @@ const AppServer = parent => class Server extends use(parent, AppUser) {
     makeEntitiesFromStructures(this.entities, structures);
 
     this.setAuthParams({ jwtSecret: this.env.jwtSecret || 'default' });
-
   }
 };
 AppServer.package = packageName;
