@@ -2,6 +2,7 @@ import { use } from 'katejs/lib/client';
 import { AppUser } from 'katejs-modules/lib/client';
 
 import AccountList from './forms/AccountList';
+import AccountItem from './forms/AccountItem';
 
 import { structures, title, packageName } from './structure';
 import env from './front.env.json';
@@ -19,6 +20,7 @@ const AppClient = parent => class Client extends use(parent, AppUser) {
     this.forms = {
       ...this.forms,
       AccountList: AccountList(this.forms.AccountList),
+      AccountItem: AccountItem(this.forms.AccountItem),
     };
 
     this.saveAuth = true;

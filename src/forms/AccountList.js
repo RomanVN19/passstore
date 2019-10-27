@@ -4,7 +4,7 @@ import Fields from 'katejs/lib/fields';
 export default Form => class AccountList extends Form {
   constructor(args) {
     super(args);
-    this.actions[0].disabled = !this.app.allow('Account', 'put');
+    this.actions[0].disabled = true;
     this.elements.unshift({
       type: Elements.GRID,
       elements: [
@@ -15,16 +15,20 @@ export default Form => class AccountList extends Form {
         },
         {
           ...getElement({ name: 'project', type: Fields.REFERENCE, entity: 'Project' }, this),
-          onChange: () => this.projectChange(),
+          onChange: val => this.projectChange(val),
         },
       ],
     });
+    if (this.app.currentProject) {
+      this.filters = { projectUuid: this.app.currentProject.uuid };
+      this.elements.get('project').value = this.app.currentProject;
+      this.actions[0].disabled = false;
+    }
   }
 
-  projectChange() {
-    this.filters = {};
-    const project = this.content.project.value;
-    this.filters.projectUuid = project.uuid;
+  projectChange(project) {
+    this.filters = { projectUuid: project && project.uuid };
+    this.content.__Add.disabled = !project || !this.app.allow('Account', 'put');
     // to use in edit form
     this.app.currentProject = project;
     this.load();
