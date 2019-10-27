@@ -65,7 +65,7 @@ const Account = {
   ],
   tables: [
     {
-      name: 'availableForRoles',
+      name: 'availableFor',
       fields: [
         {
           name: 'role',
