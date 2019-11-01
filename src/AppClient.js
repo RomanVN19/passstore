@@ -1,6 +1,8 @@
 import { use } from 'katejs/lib/client';
 import { AppUser } from 'katejs-modules/lib/client';
 
+import { AppCache } from 'katejs-memory/lib/client';
+
 import AccountList from './forms/AccountList';
 import AccountItem from './forms/AccountItem';
 
@@ -8,7 +10,7 @@ import { structures, title, packageName } from './structure';
 import env from './front.env.json';
 import icons from './icons';
 
-const AppClient = parent => class Client extends use(parent, AppUser) {
+const AppClient = parent => class Client extends use(parent, AppUser, AppCache) {
   static title = title;
 
   constructor(params) {
@@ -41,6 +43,8 @@ const AppClient = parent => class Client extends use(parent, AppUser) {
     // Admin <- Role.put
     // PM <- Project.put
     // User <- !Account.put
+
+    this.cacheCollectMode = true;
   }
 };
 AppClient.package = packageName;
