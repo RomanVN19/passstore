@@ -13,11 +13,13 @@ const AppClient = parent => class Client extends use(parent) {
     };
     this.makeApiLinks({ entities: ['CacheControl'] });
     this.memory = [];
+    // set same device for all to proceed auth
+    window.localStorage.setItem('katejs-user-device', 'device-12345');
   }
 
   afterInit() {
     if (super.afterInit) super.afterInit();
-    if (this.cacheCollectMode) {
+    if (this.memoryCollectMode) {
       this.menu.push({
         form: 'CacheControl',
         title: 'Cache control',
@@ -26,22 +28,32 @@ const AppClient = parent => class Client extends use(parent) {
   }
 
   async request(url, params) {
-    const response = await super.request(url, params);
     const uri = url.replace(this.baseUrl, '');
-    if (uri === '/CacheControl/save') return;
     const { body } = params;
     const auth = this.authorization;
     const memItem = this.memory.find(item => item.uri === uri
       && item.body === body && item.auth === auth);
-    if (memItem) {
-      memItem.response = response;
+
+    let response;
+    if (this.memoryCollectMode) {
+      response = await super.request(url, params);
+      if (uri === '/CacheControl/save') return response;
+      if (memItem) {
+        memItem.response = response;
+      } else {
+        this.memory.push({
+          uri,
+          body,
+          auth,
+          response,
+        });
+      }
+    } else if (memItem) {
+      // return saved data
+      // eslint-disable-next-line prefer-destructuring
+      response = memItem.response;
     } else {
-      this.memory.push({
-        uri,
-        body,
-        auth,
-        response,
-      });
+      response = { error: { message: 'No data' } };
     }
     return response;
   }

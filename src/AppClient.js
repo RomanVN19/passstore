@@ -10,6 +10,8 @@ import { structures, title, packageName } from './structure';
 import env from './front.env.json';
 import icons from './icons';
 
+import memory from './memory.json';
+
 const AppClient = parent => class Client extends use(parent, AppUser, AppMemory) {
   static title = title;
 
@@ -44,7 +46,8 @@ const AppClient = parent => class Client extends use(parent, AppUser, AppMemory)
     // PM <- Project.put
     // User <- !Account.put
 
-    this.cacheCollectMode = true;
+    // this.memoryCollectMode = true;
+    this.memory = memory;
   }
 };
 AppClient.package = packageName;
