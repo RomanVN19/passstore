@@ -15,6 +15,8 @@ import memory from './memory.json';
 const AppClient = parent => class Client extends use(parent, AppUser, AppMemory) {
   static title = title;
 
+  static path = '/app';
+
   constructor(params) {
     super(params);
     this.baseUrl = env.apiUrl || '/api';
