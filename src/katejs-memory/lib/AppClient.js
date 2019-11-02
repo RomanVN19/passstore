@@ -29,11 +29,11 @@ const AppClient = parent => class Client extends use(parent) {
 
   async request(url, params) {
     const uri = url.replace(this.baseUrl, '');
-    const { body } = params;
+    const body = JSON.stringify(params.body);
     const auth = this.authorization;
     const memItem = this.memory.find(item => item.uri === uri
       && item.body === body && item.auth === auth);
-
+    
     let response;
     if (this.memoryCollectMode) {
       response = await super.request(url, params);
@@ -47,6 +47,8 @@ const AppClient = parent => class Client extends use(parent) {
           auth,
           response,
         });
+        // eslint-disable-next-line no-console
+        console.log(`Added to cache (${this.memory.length})`);
       }
     } else if (memItem) {
       // return saved data
