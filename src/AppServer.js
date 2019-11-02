@@ -1,10 +1,13 @@
 import { makeEntitiesFromStructures, use } from 'katejs';
 import { AppUser } from 'katejs-modules';
+
+import { AppMemory } from 'katejs-memory';
+
 import { structures, title, packageName } from './structure';
 import Project from './entities/Project';
 import Account from './entities/Account';
 
-const AppServer = parent => class Server extends use(parent, AppUser) {
+const AppServer = parent => class Server extends use(parent, AppUser, AppMemory) {
   static title = title;
 
   constructor(params) {

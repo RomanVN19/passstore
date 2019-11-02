@@ -1,22 +1,22 @@
-import { makeEntitiesFromStructures, use } from 'katejs';
-import { AppUser } from 'katejs-modules';
-import { structures, title, packageName } from './structure';
-import Project from './entities/Project';
-import Account from './entities/Account';
+import { use } from 'katejs';
 
-const AppServer = parent => class Server extends use(parent, AppUser) {
-  static title = title;
+import { packageName } from './structure';
+import CacheControl from './entities/CacheControl';
+
+const AppServer = parent => class Server extends use(parent) {
 
   constructor(params) {
     super(params);
-    makeEntitiesFromStructures(this.entities, structures);
     this.entities = {
       ...this.entities,
-      Project: Project(this.entities.Project),
-      Account: Account(this.entities.Account),
+      CacheControl,
     };
 
-    this.setAuthParams({ jwtSecret: this.env.jwtSecret || 'default' });
+    this.publicAccessRules.push({
+      entity: 'CacheControl',
+      method: 'save',
+      access: true,
+    });
   }
 };
 AppServer.package = packageName;

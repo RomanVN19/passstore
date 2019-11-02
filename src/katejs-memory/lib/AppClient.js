@@ -1,5 +1,6 @@
 import { use } from 'katejs/lib/client';
 
+import { packageName } from './structure';
 import CacheControl from './forms/CacheControl';
 
 const AppClient = parent => class Client extends use(parent) {
@@ -10,6 +11,8 @@ const AppClient = parent => class Client extends use(parent) {
       ...this.forms,
       CacheControl,
     };
+    this.makeApiLinks({ entities: ['CacheControl'] });
+    this.memory = [];
   }
 
   afterInit() {
@@ -22,13 +25,26 @@ const AppClient = parent => class Client extends use(parent) {
     }
   }
 
-  async request(...args) {
-    const response = await super.request(...args)
-    console.log(...args);
-    console.log(this.authorization);
-    console.log(response);
+  async request(url, params) {
+    const response = await super.request(url, params);
+    const uri = url.replace(this.baseUrl, '');
+    if (uri === '/CacheControl/save') return;
+    const { body } = params;
+    const auth = this.authorization;
+    const memItem = this.memory.find(item => item.uri === uri
+      && item.body === body && item.auth === auth);
+    if (memItem) {
+      memItem.response = response;
+    } else {
+      this.memory.push({
+        uri,
+        body,
+        auth,
+        response,
+      });
+    }
     return response;
   }
 };
-AppClient.package = 'katejs-cache';
+AppClient.package = packageName;
 export default AppClient;
