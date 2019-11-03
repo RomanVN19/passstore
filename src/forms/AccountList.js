@@ -28,6 +28,7 @@ export default Form => class AccountList extends Form {
 
   projectChange(project) {
     this.filters = { projectUuid: project && project.uuid };
+    if (!project) this.filters = {};
     this.content.__Add.disabled = !project || !this.app.allow('Account', 'put');
     // to use in edit form
     this.app.currentProject = project;
