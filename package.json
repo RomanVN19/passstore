@@ -18,6 +18,7 @@
   },
   "author": "Roman Nep <neproman@gmail.com>",
   "license": "GPL-3.0",
+  "homepage": "https://passstore.ru/app",
   "dependencies": {
     "katejs": "^1.0.26",
     "katejs-modules": "0.0.4",
