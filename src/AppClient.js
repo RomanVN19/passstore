@@ -7,9 +7,19 @@ import AccountItem from './forms/AccountItem';
 import { structures, title, packageName } from './structure';
 import env from './front.env.json';
 import icons from './icons';
+import logo from './logo.svg';
 
 const AppClient = parent => class Client extends use(parent, AppUser) {
   static title = title;
+
+  static logo = logo;
+
+  static primaryColor = '#601010';
+
+  static drawerPalette = {
+    main: '#222222',
+    background: '#eeeeee',
+  };
 
   constructor(params) {
     super(params);
