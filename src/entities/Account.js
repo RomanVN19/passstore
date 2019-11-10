@@ -20,7 +20,7 @@ export default Entity => class Account extends Entity {
   async get(args) {
     const { response: item } = await super.get(args);
     if (this.app.allow(args, 'Role', 'put')) { // admin
-      return item;
+      return { response: item };
     }
 
     const { response: project } = await this.app.Project.get({ data: { uuid: item.project.uuid } });
