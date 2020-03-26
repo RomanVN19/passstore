@@ -22,7 +22,7 @@
 					<header id="header" class="alt">
 						<span class="logo"><img src="images/passstore.svg" alt="" /></span>
 						<h1>Passstore</h1>
-						<p>Хранение учетных данных (паролей) и доступ по ролям</p>
+						<p>Store and share credentials across your team</p>
 					</header>
 
 				<!-- Nav -->
@@ -41,30 +41,30 @@
 						<!-- Get Started -->
 							<section id="cta" class="main special">
 								<header class="major">
-									<h2>Online демо</h2>
-									<h3>Аккаунты</h3>
+									<h2>Online demo</h2>
+									<h3>Accounts</h3>
 									<div class="table-acoounts">
 										<table>
 											<thead>
 												<tr>
-													<th>Описание</th>
-													<th>Пользователь</th>
-													<th>Пароль</th>
+													<th>Description</th>
+													<th>Username</th>
+													<th>Password</th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr>
-													<td>Полный доступ</td>
+													<td>Full access</td>
 													<td>admin</td>
 													<td>admin</td>
 												</tr>
 												<tr>
-													<td>Управление своими проектами</td>
+													<td>Manage own projects</td>
 													<td>pm</td>
 													<td>pm</td>
 												</tr>
 												<tr>
-													<td>Просмотр разрешенных учетных данных</td>
+													<td>View allowed credentials</td>
 													<td>developer</td>
 													<td>developer</td>
 												</tr>
@@ -72,56 +72,29 @@
 										</table>
 									</div>
 
-									<p>Демо система работет в режиме <b>только для чтения</b></p>
+									<p>Demo system is <b>read-only</b></p>
 								</header>
 								<footer class="major">
 									<ul class="actions special">
-										<li><a href="/app/" class="button primary">Попробовать</a></li>
+										<li><a href="/app/" class="button primary">Try it out</a></li>
 									</ul>
 								</footer>
 							</section>
-
-						<section id="intro" class="main">
-							<div class="spotlight">
-								<div class="content">
-									<header class="major">
-										<h2>Описание</h2>
-									</header>
-									<p> В системе может быть определено несколько Проектов (Projects). В каждом проекте
-									определяется состав пользователей с указанием их Проектных ролей (Project roles).
-									В разных проектах один и тот же пользователь может иметь разные Проектные роли.</p>
-									<p> Единица учетных данных, доступ к которой нужно предоставить, в терминах
-									системы называется Аккаунт (Account). Каждый Аккаунт относится к конкретному Проекту.
-									Также, в нем определяются Проектные роли, которые могут иметь доступ к данным.
-									Пользователь может прочитать данные Аккаунта, если он добавлен в Проект,
-									к которому относится Аккаунт, с ролью, которая есть в списке разрешенных
-									у Аккаунта</p>
-									<p>В системе предусмотрены три категории (Роли) пользователей,
-										которые указываются при создании пользователя:</p>
-									<ul>
-										<li>Admin - полный доступ к системе</li>
-										<li>Project manager - создание и редактирование своих Проектов, создание и
-										редактирование Аккаунтов</li>
-										<li>User - просмотр данных разрешенных Аккаунтов</li>
-									</ul>
-								</div>
-							</div>
-						</section>
 
 							<section id="intro" class="main">
 								<div class="spotlight">
 									<div class="content">
 										<header class="major">
-											<h2>Установка и использование</h2>
+											<h2>Install and use</h2>
 										</header>
 										<pre><code>
 git clone https://github.com/romannep/passstore.git
 cd passstore
 npm install
-npm start
+npm start 
 										</code></pre>
-										<p>Приложение доступно по адресу <a href="http://localhost:2002">localhost:2002</a>.
-											Используйте имя пользователя/пароль <code>admin/admin</code> для входа.</p>
+										<p>You can access app at <a href="http://localhost:2002">localhost:2002</a>.
+											Use username/password <code>admin/admin</code> to log in</p>
 									</div>
 								</div>
 							</section>
@@ -136,7 +109,7 @@ npm start
 										<a href="https://github.com/romannep/passstore">https://github.com/romannep/passstore</a>
 										<br/><br/><br/>
 										<header class="major">
-											<h2>Лицензия</h2>
+											<h2>License</h2>
 										</header>
 										<a href="https://github.com/romannep/passstore/blob/master/LICENSE">MIT</a>
 									</div>
