@@ -1,9 +1,9 @@
-# Passstore
-Store and share credentials across your team
+# Passstore - корпоративный менеджер паролей
+Хранение учетных данных (паролей) и доступ по ролям
 
-Demo, docs available at [passstore.ru](https://passstore.ru)
+Демо, документация: [passstore.ru](https://passstore.ru)
 
-Powered by [<img width="32" height="32" style="vertical-align: middle;" src="https://github.com/romannep/katejs/raw/master/docs/assets/img/logo_kate_200.jpg"> KateJS](https://github.com/romannep/katejs)
+Powered by [<img width="32" height="32" style="vertical-align: middle;" src="https://github.com/romannep/katejs-docs/raw/master/docs/assets/img/logo_kate_200.jpg"> KateJS](https://github.com/romannep/katejs)
 
 ## License
-[MIT](LICENSE)
+[AGPL](LICENSE)
